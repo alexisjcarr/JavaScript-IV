@@ -28,6 +28,13 @@ class Instructor extends Person {
   grade(Student, subject) {
     return `${Student.name} receives a perfect score on ${subject}`;
   }
+
+  adjustGrade(Student) { // stretch method
+      let adjust = Math.floor(Math.random() * 100);
+      let addOrsub = Math.random() > 0.5 ? 'added -' : 'added ';
+      let op = addOrsub === 'added -' ? Student.grade -= adjust : Student.grade += adjust;
+      return `${this.name} ${addOrsub}${adjust} point to ${Student.name}'s grade.\n ${Student.name}'s grade is now ${Student.grade}.`;
+  }
 }
 
 class Student extends Person {
@@ -36,6 +43,7 @@ class Student extends Person {
     this.previousBackground = studAttrs.previousBackground;
     this.className = studAttrs.className;
     this.favSubjects = studAttrs.favSubjects;
+    this.grade = studAttrs.grade;
   }
 
   listSubjects() {
@@ -48,6 +56,10 @@ class Student extends Person {
 
   sprintChallenge(subject) {
     return `${this.name} has began a sprint challenge for ${subject}`;
+  }
+
+  graduate() {
+      return this.grade >= 70 ? `${this.name} graduates with a ${this.grade} average!` : `${this.name} cannot graduate as their grade is only a ${this.grade}. \nKeep studying.` 
   }
 }
 
@@ -74,6 +86,7 @@ const alexis = new Student({
     previousBackground: 'Biomedical Engineering/Informatics',
     className: 'WEB20',
     favSubjects: ['Javascript', ' Java', ' React'],
+    grade: 100
   });
   
   console.log(alexis.previousBackground)
@@ -90,6 +103,7 @@ const alexis = new Student({
     previousBackground: 'Death',
     className: 'CS1',
     favSubjects: ['.NET', ' Perl', ' C'],
+    grade: 90
   });
   
   console.log(mario.previousBackground)
@@ -144,6 +158,8 @@ const dan = new Instructor({
   console.log(ryan.favInstructor)
   console.log(ryan.standUp('web20_ryan'))
   console.log(ryan.debugsCode(alexis, 'React'))
+  console.log(ryan.adjustGrade(alexis)) //Stretch test
+  console.log(alexis.graduate()) //Stretch test
 
   const elan = new ProjectManager({
     name: 'Elan',
