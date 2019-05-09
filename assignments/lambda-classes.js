@@ -30,9 +30,9 @@ class Instructor extends Person {
   }
 
   adjustGrade(Student) { // stretch method
-      let adjust = Math.floor(Math.random() * 100);
+      let adjust = Math.floor(Math.random() * 30);
       let addOrsub = Math.random() > 0.5 ? 'added -' : 'added ';
-      let op = addOrsub === 'added -' ? Student.grade -= adjust : Student.grade += adjust;
+      addOrsub === 'added -' ? Student.grade -= adjust : Student.grade += adjust;
       return `${this.name} ${addOrsub}${adjust} point to ${Student.name}'s grade.\n ${Student.name}'s grade is now ${Student.grade}.`;
   }
 }
@@ -86,7 +86,7 @@ const alexis = new Student({
     previousBackground: 'Biomedical Engineering/Informatics',
     className: 'WEB20',
     favSubjects: ['Javascript', ' Java', ' React'],
-    grade: 100
+    grade: 80
   });
   
   console.log(alexis.previousBackground)
